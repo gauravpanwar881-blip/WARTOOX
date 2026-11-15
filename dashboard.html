@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | WARTOOX</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#f7f9f8;color:#18251f}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:245px;background:#fff;border-right:1px solid #e8eeea;padding:28px 18px;flex-shrink:0}
+.logo{font-size:25px;font-weight:800;letter-spacing:-1px;color:#15251d;margin:0 0 45px 10px}
+.logo span{color:#079568}
+.menu-title{font-size:11px;color:#98a69e;font-weight:700;margin:25px 12px 12px;letter-spacing:1px}
+.menu a{display:block;text-decoration:none;color:#68776e;padding:13px 14px;border-radius:9px;margin:5px 0;font-size:13px;font-weight:600}
+.menu a.active,.menu a:hover{background:#eaf7f1;color:#07865d}
+.sidebar-bottom{margin-top:70px}
+.main{flex:1;min-width:0;padding:32px 4%}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:35px}
+.topbar h2{font-size:23px}
+.topbar p{font-size:12px;color:#89968e;margin-top:6px}
+.profile{background:white;border:1px solid #e7ece8;border-radius:30px;padding:10px 16px;font-size:12px;font-weight:600}
+.welcome{margin-bottom:28px}
+.welcome h1{font-size:27px;margin-bottom:9px}
+.welcome p{font-size:13px;color:#849188}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;margin-bottom:30px}
+.stat{background:white;padding:23px;border:1px solid #e8eeea;border-radius:14px}
+.stat .label{font-size:12px;color:#829087;font-weight:600}
+.stat h2{font-size:29px;margin:15px 0 8px}
+.stat small{font-size:11px;color:#079568}
+.stat.warning small{color:#d68b25}
+.stat.expired small{color:#d45c5c}
+.section{background:white;border:1px solid #e8eeea;border-radius:14px;padding:23px;margin-bottom:25px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.section-head h3{font-size:16px}
+.section-head a{font-size:12px;color:#07865d;text-decoration:none;font-weight:700}
+.products{width:100%;border-collapse:collapse}
+.products th{text-align:left;font-size:11px;color:#89968e;padding:13px 10px;border-bottom:1px solid #edf0ed}
+.products td{padding:17px 10px;font-size:12px;border-bottom:1px solid #f0f2f0}
+.products tr:last-child td{border:0}
+.status{display:inline-block;padding:6px 10px;border-radius:20px;background:#e8f7ef;color:#07865d;font-size:10px;font-weight:700}
+.status.soon{background:#fff4df;color:#b87919}
+.add-btn{background:#078b60;color:white;padding:12px 17px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:700}
+.empty{padding:35px;text-align:center;color:#89968e;font-size:13px}
+.footer{font-size:11px;color:#a0aaa4;text-align:center;padding:15px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){
+.sidebar{width:70px;padding:20px 8px}
+.logo{font-size:13px;margin:10px 0 35px;text-align:center}
+.menu-title{display:none}
+.menu a{font-size:0;text-align:center;padding:14px 3px}
+.menu a:first-letter{font-size:17px}
+.sidebar-bottom{margin-top:40px}
+.main{padding:22px 13px}
+.welcome h1{font-size:21px}
+.stats{gap:9px}
+.stat{padding:15px}
+.stat h2{font-size:23px}
+.section{padding:14px;overflow-x:auto}
+.products{min-width:540px}
+.topbar h2{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+<aside class="sidebar">
+<div class="logo">WART<span>OOX</span></div>
+
+<div class="menu-title">MAIN MENU</div>
+<nav class="menu">
+<a href="dashboard.html" class="active">▦ &nbsp; Overview</a>
+<a href="#products">▣ &nbsp; My Products</a>
+<a href="#add-product">＋ &nbsp; Add Product</a>
+<a href="#documents">▤ &nbsp; Documents</a>
+<a href="#expiry">◷ &nbsp; Expiry Tracking</a>
+</nav>
+
+<div class="menu-title">ACCOUNT</div>
+<nav class="menu">
+<a href="#profile">◎ &nbsp; My Profile</a>
+<a href="index.html">↗ &nbsp; Home Page</a>
+<a href="login.html">⇥ &nbsp; Logout</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+<div>
+<h2>Dashboard</h2>
+<p>Your personal warranty space</p>
+</div>
+<div class="profile">👤 My Account</div>
+</div>
+
+<div class="welcome">
+<h1>Welcome to WARTOOX 👋</h1>
+<p>Manage your products, bills and warranties in one place.</p>
+</div>
+
+<div class="stats">
+<div class="stat">
+<div class="label">TOTAL PRODUCTS</div>
+<h2>00</h2>
+<small>Products registered</small>
+</div>
+<div class="stat">
+<div class="label">ACTIVE WARRANTIES</div>
+<h2>00</h2>
+<small>Currently protected</small>
+</div>
+<div class="stat warning">
+<div class="label">EXPIRING SOON</div>
+<h2>00</h2>
+<small>Needs your attention</small>
+</div>
+<div class="stat expired">
+<div class="label">EXPIRED WARRANTIES</div>
+<h2>00</h2>
+<small>Warranty period ended</small>
+</div>
+</div>
+
+<section class="section" id="products">
+<div class="section-head">
+<h3>My Products</h3>
+<a href="#add-product">+ Add New Product</a>
+</div>
+
+<div class="empty">
+Your registered products will appear here.
+</div>
+</section>
+
+<section class="section" id="add-product">
+<div class="section-head">
+<h3>Add Your First Product</h3>
+</div>
+<div class="empty">
+Start building your digital product and warranty collection.
+<br><br>
+<a href="#products" class="add-btn">Add Product – Coming Soon</a>
+</div>
+</section>
+
+<section class="section" id="documents">
+<div class="section-head">
+<h3>My Documents</h3>
+</div>
+<div class="empty">
+Your uploaded bills and warranty documents will appear here.
+</div>
+</section>
+
+<section class="section" id="expiry">
+<div class="section-head">
+<h3>Warranty Expiry Tracking</h3>
+</div>
+<div class="empty">
+Your upcoming warranty expiry reminders will appear here.
+</div>
+</section>
+
+<div class="footer">© 2026 WARTOOX. Your Warranty. Always Protected.</div>
+
+</main>
+</div>
+</body>
+</html>
