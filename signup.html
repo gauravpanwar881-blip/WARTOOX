@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account | WARTOOX</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,sans-serif;
+  background:#f5faf7;color:#17251f;
+  min-height:100vh;display:flex;flex-direction:column
+}
+header{
+  height:78px;background:white;border-bottom:1px solid #e5eee8;
+  display:flex;align-items:center;padding:0 7%
+}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;color:#087f52;font-size:25px;font-weight:800
+}
+.logo-icon{
+  width:44px;height:44px;background:#078653;color:white;
+  display:grid;place-items:center;border-radius:12px;font-size:26px
+}
+main{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:40px 18px
+}
+.card{
+  width:100%;max-width:470px;background:white;
+  border:1px solid #e5eee8;border-radius:20px;
+  padding:38px;box-shadow:0 12px 45px #14412b0f
+}
+.tag{
+  display:inline-block;background:#e7f6ee;color:#078653;
+  padding:9px 13px;border-radius:30px;font-size:10px;
+  font-weight:800;letter-spacing:.5px;margin-bottom:20px
+}
+h1{font-size:29px;letter-spacing:-1px;margin-bottom:10px}
+.subtitle{font-size:13px;color:#718078;line-height:1.7;margin-bottom:27px}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:9px}
+input{
+  width:100%;padding:14px;border:1px solid #dce7e0;
+  border-radius:10px;font-size:14px;font-family:inherit;
+  outline:none;margin-bottom:19px
+}
+input:focus{border-color:#078653;box-shadow:0 0 0 3px #07865315}
+.phone-wrap{display:flex;gap:9px}
+.country{
+  width:76px;flex-shrink:0;padding:14px 8px;
+  border:1px solid #dce7e0;border-radius:10px;
+  margin-bottom:19px;background:#f8fbf9;font-size:14px
+}
+.phone-wrap input{flex:1;min-width:0}
+.otp-section{
+  background:#f4faf6;border:1px solid #dceee3;
+  padding:17px;border-radius:12px;margin:2px 0 20px
+}
+.otp-section p{font-size:12px;color:#718078;line-height:1.6;margin-bottom:12px}
+.otp-section input{margin-bottom:0;background:white}
+.send-btn{
+  width:100%;padding:14px;border:0;border-radius:10px;
+  background:#078653;color:white;font-size:14px;
+  font-weight:700;cursor:pointer;font-family:inherit
+}
+.send-btn:hover{background:#066c43}
+.login{text-align:center;font-size:13px;color:#718078;margin-top:24px}
+.login a,.back{color:#078653;text-decoration:none;font-weight:700}
+.back{display:block;text-align:center;margin-top:20px;font-size:13px}
+footer{text-align:center;padding:22px;color:#84928a;font-size:12px}
+@media(max-width:500px){.card{padding:28px 21px}h1{font-size:25px}}
+</style>
+</head>
+
+<body>
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-icon">W</span> WARTOOX
+  </a>
+</header>
+
+<main>
+<section class="card">
+  <span class="tag">YOUR PERSONAL WARRANTY MANAGER</span>
+  <h1>Create Your Account</h1>
+  <p class="subtitle">
+    Create your WARTOOX account and keep your product
+    bills, warranty cards and expiry dates organized.
+  </p>
+
+  <form id="signupForm">
+    <label for="fullName">Full Name</label>
+    <input id="fullName" type="text" placeholder="Enter your full name" autocomplete="name" required>
+
+    <label for="phone">Mobile Number</label>
+    <div class="phone-wrap">
+      <div class="country">+91</div>
+      <input id="phone" type="tel" placeholder="10-digit mobile number"
+        inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}"
+        autocomplete="tel-national" required>
+    </div>
+
+    <label for="password">Create Password</label>
+    <input id="password" type="password" placeholder="Create your password"
+      minlength="8" autocomplete="new-password" required>
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input id="confirmPassword" type="password" placeholder="Enter password again"
+      minlength="8" autocomplete="new-password" required>
+
+    <button class="send-btn" type="button" id="sendOtpBtn">
+      Send OTP →
+    </button>
+
+    <div class="otp-section">
+      <label for="otp">Mobile Verification OTP</label>
+      <p>Enter the verification code sent to your mobile number. OTP verification will be connected in the next development step.</p>
+      <input id="otp" type="text" placeholder="Enter 6-digit OTP"
+        inputmode="numeric" maxlength="6">
+    </div>
+
+    <button class="send-btn" type="submit">
+      Verify & Create Account
+    </button>
+  </form>
+
+  <p class="login">
+    Already have an account? <a href="login.html">Login</a>
+  </p>
+
+  <a class="back" href="index.html">← Back to Homepage</a>
+</section>
+</main>
+
+<footer>© 2026 WARTOOX. Your Warranty. Always Protected.</footer>
+</body>
+</html>
