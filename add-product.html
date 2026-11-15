@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Product | WARTOOX</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#f7f9f8;color:#18251f}
+header{height:75px;background:white;border-bottom:1px solid #e9eeea;display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+.logo{font-size:25px;font-weight:800;letter-spacing:-1px}
+.logo span{color:#079568}
+header a{color:#07865d;text-decoration:none;font-size:13px;font-weight:700}
+main{max-width:850px;margin:45px auto;padding:0 20px}
+.heading{margin-bottom:27px}
+.heading h1{font-size:27px;margin-bottom:9px}
+.heading p{font-size:13px;color:#87948c}
+.card{background:white;border:1px solid #e8eeea;border-radius:15px;padding:30px;margin-bottom:22px}
+.card h3{font-size:16px;margin-bottom:7px}
+.sub{font-size:12px;color:#89968e;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:21px}
+.field{display:flex;flex-direction:column;gap:9px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:600;color:#425148}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid #dfe7e1;border-radius:8px;font-family:inherit;font-size:12px;outline:none;background:white;color:#26372d}
+input:focus,select:focus,textarea:focus{border-color:#079568;box-shadow:0 0 0 3px #07956815}
+input[type=file]{background:#f9fbf9}
+textarea{resize:vertical;min-height:90px}
+.upload{border:1px dashed #b8cfc0;background:#f8fcf9;border-radius:10px;padding:19px}
+.upload p{font-size:11px;color:#89968e;margin-top:7px}
+.actions{display:flex;justify-content:flex-end;gap:12px;margin-bottom:40px}
+.btn{padding:13px 21px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700;border:0;cursor:pointer}
+.cancel{background:white;border:1px solid #dfe7e1;color:#59685e}
+.save{background:#078b60;color:white}
+.note{font-size:11px;color:#8b978f;margin:0 0 20px}
+@media(max-width:600px){
+header{padding:0 18px}
+main{margin:30px auto;padding:0 13px}
+.card{padding:20px 15px}
+.grid{grid-template-columns:1fr;gap:17px}
+.field.full{grid-column:auto}
+.heading h1{font-size:23px}
+.actions{flex-direction:column-reverse}
+.btn{text-align:center}
+}
+</style>
+</head>
+
+<body>
+<header>
+<div class="logo">WART<span>OOX</span></div>
+<a href="dashboard.html">← Back to Dashboard</a>
+</header>
+
+<main>
+<div class="heading">
+<h1>Add New Product</h1>
+<p>Register your product and keep its warranty safe with WARTOOX.</p>
+</div>
+
+<form id="productForm">
+
+<section class="card">
+<h3>Product Information</h3>
+<p class="sub">Enter the basic details of your product.</p>
+
+<div class="grid">
+<div class="field">
+<label>Product Name *</label>
+<input type="text" name="product_name" placeholder="e.g. Smartphone" required>
+</div>
+
+<div class="field">
+<label>Brand Name</label>
+<input type="text" name="brand" placeholder="e.g. Samsung">
+</div>
+
+<div class="field">
+<label>Model Number</label>
+<input type="text" name="model" placeholder="Enter model number">
+</div>
+
+<div class="field">
+<label>Serial Number</label>
+<input type="text" name="serial_number" placeholder="Enter serial number">
+</div>
+</div>
+</section>
+
+<section class="card">
+<h3>Purchase Details</h3>
+<p class="sub">Add your product purchase information.</p>
+
+<div class="grid">
+<div class="field">
+<label>Purchase Date *</label>
+<input type="date" name="purchase_date" required>
+</div>
+
+<div class="field">
+<label>Warranty Type *</label>
+<select name="warranty_type" required>
+<option value="">Select warranty type</option>
+<option value="Manufacturer">Manufacturer Warranty</option>
+<option value="Extended">Extended Warranty</option>
+<option value="Guarantee">Guarantee</option>
+</select>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h3>Warranty Information</h3>
+<p class="sub">Enter the warranty period mentioned on your bill or warranty card.</p>
+
+<div class="grid">
+<div class="field">
+<label>Warranty Start Date *</label>
+<input type="date" name="warranty_start_date" required>
+</div>
+
+<div class="field">
+<label>Warranty End Date *</label>
+<input type="date" name="warranty_end_date" required>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h3>Product Documents</h3>
+<p class="sub">Upload your purchase bill and warranty documents.</p>
+
+<div class="grid">
+<div class="field">
+<label>Purchase Bill</label>
+<div class="upload">
+<input type="file" name="purchase_bill" accept=".pdf,.jpg,.jpeg,.png">
+<p>PDF, JPG or PNG</p>
+</div>
+</div>
+
+<div class="field">
+<label>Warranty Card</label>
+<div class="upload">
+<input type="file" name="warranty_card" accept=".pdf,.jpg,.jpeg,.png">
+<p>PDF, JPG or PNG</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h3>Additional Notes</h3>
+<p class="sub">Add any extra information about your product (optional).</p>
+<div class="field">
+<label>Notes</label>
+<textarea name="notes" placeholder="Write additional details here..."></textarea>
+</div>
+</section>
+
+<p class="note">* Required fields. Your product information will be associated with your account.</p>
+
+<div class="actions">
+<a href="dashboard.html" class="btn cancel">Cancel</a>
+<button type="submit" class="btn save">Save Product →</button>
+</div>
+
+</form>
+</main>
+
+<script>
+document.getElementById("productForm").addEventListener("submit", function(e){
+e.preventDefault();
+alert("Product saving functionality will be activated when Supabase is connected.");
+});
+</script>
+
+</body>
+</html>
