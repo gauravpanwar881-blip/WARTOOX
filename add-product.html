@@ -173,12 +173,110 @@ main{margin:30px auto;padding:0 13px}
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 
+
 <script>
-document.getElementById("productForm").addEventListener("submit", function(e){
-e.preventDefault();
-alert("Product saving functionality will be activated when Supabase is connected.");
+const supabase = window.supabaseClient;
+
+document.getElementById("productForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const button = form.querySelector('button[type="submit"]');
+
+    try {
+        button.disabled = true;
+        button.textContent = "Saving...";
+
+        // Check logged-in user
+        const { data: userData, error: userError } = await supabase.auth.getUser();
+
+        if (userError || !userData.user) {
+            alert("Please login first to save your product.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        const user = userData.user;
+
+        // Collect product information
+        const product = {
+            user_id: user.id,
+            product_name: form.elements["product_name"].value.trim(),
+            brand: form.elements["brand"].value.trim(),
+            model: form.elements["model"].value.trim(),
+            serial_number: form.elements["serial_number"].value.trim(),
+            purchase_date: form.elements["purchase_date"].value,
+            warranty_type: form.elements["warranty_type"].value,
+            warranty_start_date: form.elements["warranty_start_date"].value,
+            warranty_end_date: form.elements["warranty_end_date"].value,
+            notes: form.elements["notes"].value.trim()
+        };
+
+        // Save product in database
+        const { data: savedProduct, error: productError } = await supabase
+            .from("products")
+            .insert(product)
+            .select()
+            .single();
+
+        if (productError) throw productError;
+
+        // Upload documents if selected
+        const documents = [
+            {
+                input: form.elements["purchase_bill"],
+                type: "Purchase Bill"
+            },
+            {
+                input: form.elements["warranty_card"],
+                type: "Warranty Card"
+            }
+        ];
+
+        for (const doc of documents) {
+            const file = doc.input.files[0];
+
+            if (!file) continue;
+
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+            const filePath = `${user.id}/${savedProduct.id}/${Date.now()}_${safeName}`;
+
+            const { error: uploadError } = await supabase.storage
+                .from("wartoox-documents")
+                .upload(filePath, file);
+
+            if (uploadError) {
+                throw new Error("Product saved, but document upload failed: " + uploadError.message);
+            }
+
+            const { error: documentError } = await supabase
+                .from("product_documents")
+                .insert({
+                    user_id: user.id,
+                    product_id: savedProduct.id,
+                    file_name: file.name,
+                    storage_path: filePath,
+                    document_type: doc.type
+                });
+
+            if (documentError) {
+                throw new Error("Product saved, but document record failed: " + documentError.message);
+            }
+        }
+
+        alert("Product saved successfully!");
+        window.location.href = "dashboard.html";
+
+    } catch (error) {
+        console.error("WARTOOX Error:", error);
+        alert("Error: " + error.message);
+    } finally {
+        button.disabled = false;
+        button.textContent = "Save Product →";
+    }
 });
 </script>
+
 
 </body>
 </html>
